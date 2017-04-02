@@ -1,0 +1,58 @@
+<h2>Enroll</h2>
+
+<form action="/visit" method="POST" style="width: 370px;">
+  <div class="form-group">
+    <label for="user_name">Your name</label>
+    <input type="text" name="user_name" class="form-control" id="user_name" placeholder="Enter your name" value="<%= @user_name %>">
+  </div>
+  <div class="form-group">
+    <label for="email">Email address</label>
+    <input type="email" name="user_email" class="form-control" id="email" placeholder="email@example.ua"
+    value="<%= @user_email %>">
+  </div>
+  <div class="form-group">
+    <label for="phone">Your phone</label>
+    <input type="text" name="user_phone" class="form-control" id="phone" placeholder="Your phone"
+    value="<%= @user_phone %>">
+  </div>
+  <div class="form-group">
+    <label for="date">When are you waiting?</label>
+    <input type="text" name="date_time" class="form-control" id="date" placeholder="date and time"
+    value="<%= @date_time %>">
+  </div>
+  <div class="form-group">
+    <label for="barber">Choise barber</label>
+    <select class="form-control" name="barber" id="barber">
+      <option>Walter White</option>
+      <option>Jessie Pinkman</option>
+      <option>Gus Fring</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="barber">Choise color</label>
+    <select name="colorpicker">
+      <option value="#7bd148">Green</option>
+      <option value="#5484ed">Bold blue</option>
+      <option value="#a4bdfc">Blue</option>
+      <option value="#46d6db">Turquoise</option>
+      <option value="#7ae7bf">Light green</option>
+      <option value="#51b749">Bold green</option>
+      <option value="#fbd75b">Yellow</option>
+      <option value="#ffb878">Orange</option>
+      <option value="#ff887c">Red</option>
+      <option value="#dc2127">Bold red</option>
+      <option value="#dbadff">Purple</option>
+      <option value="#e1e1e1">Gray</option>
+    </select>
+
+  </div>
+  
+  <button type="submit" class="btn btn-primary">Enroll</button>
+</form>
+
+<script type="text/javascript">
+$(function(){
+$('select[name="colorpicker"]').simplecolorpicker();
+});
+  
+</script>

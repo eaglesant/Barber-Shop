@@ -1,0 +1,5 @@
+User: Vadym, phone: 097422556, Email: eagle@mail.ru, date and time: 01.04.2017 16.00
+User: Dick, phone: 45455456, Email: eagle_21@mail.ru, date and time: 22.09.2017 15.00, barber: Jessie Pinkman
+User: Igor, phone: 67876442, Email: eagle.slk@mail.ru, date and time: 14.04.2017 14.00, barber: Gus Fring
+User: Helen, phone: 8254579, Email: eagle.helen@mail.ru, date and time: 14.05.2017 19.00, barber: Walter White
+User: Julia, phone: 78673868, Email: eagle_julia@mail.ru, date and time: 01.04.2017 12.00, barber: Jessie Pinkman, color: #a4bdfc
