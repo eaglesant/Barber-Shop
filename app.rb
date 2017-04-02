@@ -37,6 +37,16 @@ end
 get '/visit' do
 	erb :visit
 end
+get '/show_users' do
+	db = get_db
+	@arr = []
+	db.execute 'SELECT * FROM Users' do |row|
+		@arr << row
+	end
+	
+	
+	erb :show_users
+end
 post '/visit' do
 	@user_name = params[:user_name]
 	@user_email = params[:user_email]

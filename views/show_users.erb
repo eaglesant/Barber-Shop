@@ -1,0 +1,24 @@
+<h2>All users</h2>
+
+<table class="table table-striped">
+<tr>
+	<th>Id</th>
+	<th>User_name</th>
+	<th>User_email</th>
+	<th>User_phone</th>
+	<th>Date_time</th>
+	<th>Barber</th>
+	<th>Color</th>
+</tr>
+<% @arr.each do |row| %>
+  <tr>
+  	<td><%= row[0] %></td>
+  	<td><%= row[1] %></td>
+  	<td><%= row[2] %></td>
+  	<td><%= row[3] %></td>
+  	<td><%= row[4] %></td>
+  	<td><%= row[5] %></td>
+  	<td><%= row[6] %></td>
+  </tr>
+<% end %>
+</table>
