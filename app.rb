@@ -4,13 +4,18 @@ require 'sinatra'
 require 'sinatra/reloader'
 require 'sqlite3'
 
+
+def get_db
+	return SQLite3::Database.new 'barbershop.db'
+end
+
 configure do
-	@db = SQLite3::Database.new 'barbershop.db'
-	@db.execute 'CREATE TABLE IF NOT EXISTS
+	db = get_db
+	db.execute 'CREATE TABLE IF NOT EXISTS
 				Users (
 			    id         INTEGER PRIMARY KEY AUTOINCREMENT
 			                       NOT NULL,
-			    user_name  STRING  NOT NULL,
+			    user_name  TEXT  NOT NULL,
 			    user_email TEXT,
 			    user_phone TEXT    NOT NULL,
 			    date_time  TEXT    NOT NULL,
@@ -50,23 +55,27 @@ post '/visit' do
 		:user_phone => 'Enter phone',
 		:date_time => 'Enter date and time' }
 
-	# hh.each do |key, value|
-	# 	if params[key] == ''
-	# 		@error = hh[key]
-	# 		return erb :visit
-	# 	end
-	# end
 
 	@error = hh.select {|key,value| params[key] == ""}.values.join(", ")
 	if @error != ''
 		return erb :visit
 	end
 
-	# f = File.open "./public/users.txt", "a"
+	db = get_db
+	db.execute 'insert into
+				Users
+				(
+					user_name,
+					user_email,
+					user_phone,
+					date_time,
+					barber,
+					color
+				)
+				values (?,?,?,?,?,?)',
+				[@user_name, @user_email, @user_phone, @date_time,@barber, @color ]
+				
 
-	# f.write "\nUser: #{@user_name}, phone: #{@user_phone}, Email: #{@user_email}, date and time: #{@date_time}, barber: #{@barber}, color: #{@color}"
-	# f.close
-	
 	erb :message
 
 
