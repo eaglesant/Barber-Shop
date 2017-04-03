@@ -19,6 +19,10 @@ end
 def get_db
 	return SQLite3::Database.new 'barbershop.db'
 end
+before do
+	db = get_db
+	@barbers = db.execute 'select * from Barbers'
+end
 
 configure do
 	db = get_db
@@ -35,12 +39,12 @@ configure do
 	)'
 
 	db.execute 'CREATE TABLE IF NOT EXISTS
-				Barbers (
-			    id         INTEGER PRIMARY KEY AUTOINCREMENT
-			                       NOT NULL,
-			    name  TEXT  NOT NULL
-			)'
-			seed_db db, ['Gus Fring', 'Jessie Pinkman', 'Walter White', 'Robbe Whiliams']
+	Barbers (
+	id         INTEGER PRIMARY KEY AUTOINCREMENT
+	NOT NULL,
+	name  TEXT  NOT NULL
+	)'
+	seed_db db, ['Gus Fring', 'Jessie Pinkman', 'Walter White', 'Robbe Whiliams']
 	
 end
 
@@ -55,8 +59,6 @@ get '/contacts' do
 	erb :contacts
 end
 get '/visit' do
-	db = get_db
-	@barbers = db.execute 'select * from Barbers'
 	erb :visit
 end
 get '/show_users' do

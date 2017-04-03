@@ -28,7 +28,7 @@
       <option>Gus Fring</option> -->
 
     <% @barbers.each do |mem| %>
-      <option><%= mem[1] %></option>
+      <option <%= @barber == mem[1] ? 'selected': '' %>><%= mem[1] %></option>
     <% end %>
 
     </select>
