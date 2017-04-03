@@ -15,11 +15,15 @@
 
 	<tbody>
 		<% @results.each do |row| %>
-		<tr>
-			<% row.each_index do |i| %>
-			<td><%= row[i] %></td>
-			<% end %>
-		</tr>
+			<tr>
+				<% row.each_index do |i| %>
+				<% if i == 6 %>
+				<td style="background: <%= row[i] %>"><%= row[i] %></td>
+				<% else %>
+				<td><%= row[i] %></td>
+				<% end %>
+				<% end %>
+			</tr>
 		<% end %>
 	</tbody>
 

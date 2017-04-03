@@ -75,9 +75,7 @@ post '/visit' do
 	@barber = params[:barber]
 	@color = params[:colorpicker]
 
-	@title_mess = 'Thank you!'
-
-	@message = "Dear #{@user_name}, we'll waiting for you at #{@date_time} with #{@barber}, color: #{@color}"
+	@message = "<h2>Fanks, you are anroll!! </h2>"
 
 
 	hh = {:user_name => 'Enter name',
