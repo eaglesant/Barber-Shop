@@ -12,16 +12,29 @@ end
 configure do
 	db = get_db
 	db.execute 'CREATE TABLE IF NOT EXISTS
-				Users (
-			    id         INTEGER PRIMARY KEY AUTOINCREMENT
-			                       NOT NULL,
-			    user_name  TEXT  NOT NULL,
-			    user_email TEXT,
-			    user_phone TEXT    NOT NULL,
-			    date_time  TEXT    NOT NULL,
-			    barber     TEXT    NOT NULL,
-			    color      TEXT
-			)'
+	Users (
+	id         INTEGER PRIMARY KEY AUTOINCREMENT
+	NOT NULL,
+	user_name  TEXT  NOT NULL,
+	user_email TEXT,
+	user_phone TEXT    NOT NULL,
+	date_time  TEXT    NOT NULL,
+	barber     TEXT    NOT NULL,
+	color      TEXT
+	)'
+
+	# db.execute 'CREATE TABLE IF NOT EXISTS
+	# 			Barbers (
+	# 		    id         INTEGER PRIMARY KEY AUTOINCREMENT
+	# 		                       NOT NULL,
+	# 		    barber_name  TEXT  NOT NULL
+	# 		)'
+	# barber_name = ['Gus Fring', 'Jessie Pinkman', 'Walter White']
+	# barber_name.each_index do |i|
+	# db.execute 'INSERT INTO Barbers(barber_name)
+	# VALUES(?)',
+	# 			[barber_name[i]]
+	# 		end
 end
 
 get '/' do
@@ -35,16 +48,13 @@ get '/contacts' do
 	erb :contacts
 end
 get '/visit' do
+	@barbers_name = ['Gus Fring', 'Jessie Pinkman', 'Walter White', 'Robbin Gudd']
 	erb :visit
 end
 get '/show_users' do
 	db = get_db
-	@arr = []
-	db.execute 'SELECT * FROM Users' do |row|
-		@arr << row
-	end
-	
-	
+	@results = db.execute 'SELECT * FROM Users order by id desc'
+
 	erb :show_users
 end
 post '/visit' do
@@ -66,27 +76,27 @@ post '/visit' do
 		:date_time => 'Enter date and time' }
 
 
-	@error = hh.select {|key,value| params[key] == ""}.values.join(", ")
-	if @error != ''
-		return erb :visit
+		@error = hh.select {|key,value| params[key] == ""}.values.join(", ")
+		if @error != ''
+			return erb :visit
+		end
+
+		db = get_db
+		db.execute 'insert into
+		Users
+		(
+		user_name,
+		user_email,
+		user_phone,
+		date_time,
+		barber,
+		color
+		)
+		values (?,?,?,?,?,?)',
+		[@user_name, @user_email, @user_phone, @date_time,@barber, @color ]
+
+
+		erb :message
+
+
 	end
-
-	db = get_db
-	db.execute 'insert into
-				Users
-				(
-					user_name,
-					user_email,
-					user_phone,
-					date_time,
-					barber,
-					color
-				)
-				values (?,?,?,?,?,?)',
-				[@user_name, @user_email, @user_phone, @date_time,@barber, @color ]
-				
-
-	erb :message
-
-
-end

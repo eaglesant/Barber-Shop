@@ -23,9 +23,14 @@
   <div class="form-group">
     <label for="barber">Choise barber</label>
     <select class="form-control" name="barber" id="barber">
-      <option>Walter White</option>
+      <!-- <option>Walter White</option>
       <option>Jessie Pinkman</option>
-      <option>Gus Fring</option>
+      <option>Gus Fring</option> -->
+
+    <% @barbers_name.each do |mem| %>
+      <option><%= mem %></option>
+    <% end %>
+
     </select>
   </div>
   <div class="form-group">
