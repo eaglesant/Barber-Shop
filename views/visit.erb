@@ -27,8 +27,8 @@
       <option>Jessie Pinkman</option>
       <option>Gus Fring</option> -->
 
-    <% @barbers_name.each do |mem| %>
-      <option><%= mem %></option>
+    <% @barbers.each do |mem| %>
+      <option><%= mem[1] %></option>
     <% end %>
 
     </select>
